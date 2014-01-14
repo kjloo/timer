@@ -1,0 +1,43 @@
+import javax.swing.JFrame;
+
+import net.miginfocom.swing.MigLayout;
+
+
+public class Test {
+	
+	//Constants
+	private static int width = 15;
+	private static int height = 30;
+		
+	private static Segment segmentZero = new Segment();
+	private static Segment segmentOne = new Segment();
+	private static Segment segmentTwo = new Segment();
+	private static Segment segmentThree = new Segment();
+	private static Segment segmentFour = new Segment();
+	private static Segment segmentFive = new Segment();
+	private static Segment segmentSix = new Segment();
+	
+	public static void main(String[] args) {
+		JFrame f = new JFrame();
+		
+		Segment segmentZero = new Segment();
+		Segment segmentOne = new Segment();
+		Segment segmentTwo = new Segment();
+		Segment segmentThree = new Segment();
+		Segment segmentFour = new Segment();
+		Segment segmentFive = new Segment();
+		Segment segmentSix = new Segment();
+		
+		f.setVisible(true);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setSize(600, 400);
+		f.add(segmentZero);
+		f.add(segmentOne);
+		f.add(segmentTwo);
+		f.add(segmentThree);
+		f.add(segmentFour);
+		f.add(segmentFive);
+		f.add(segmentSix);
+	}
+
+}

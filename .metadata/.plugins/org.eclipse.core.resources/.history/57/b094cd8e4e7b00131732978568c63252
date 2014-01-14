@@ -1,0 +1,14 @@
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+
+
+public class Screen {
+
+	//Create Graphics Device
+	private GraphicsDevice vc;
+	
+	public Screen() {
+		GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		vc = env.getDefaultScreenDevice();
+	}
+}

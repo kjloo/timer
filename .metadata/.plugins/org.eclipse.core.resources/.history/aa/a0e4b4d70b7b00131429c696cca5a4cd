@@ -1,0 +1,57 @@
+import javax.swing.JPanel;
+
+import net.miginfocom.swing.MigLayout;
+
+
+public class ClockPanel extends JPanel{
+	
+	//Size Variables
+	private int height = 7;
+	private int width = 21;
+	
+	//Create Displays
+	private SevenSegmentDisplay secondsOneDisplay = new SevenSegmentDisplay(0, 0, width, height);
+	private SevenSegmentDisplay secondsTenDisplay = new SevenSegmentDisplay(0, 0, width, height);
+	private SevenSegmentDisplay minutesOneDisplay = new SevenSegmentDisplay(0, 0, width, height);
+	private SevenSegmentDisplay minutesTenDisplay = new SevenSegmentDisplay(0, 0, width, height);
+	private SevenSegmentDisplay hoursOneDisplay = new SevenSegmentDisplay(0, 0, width, height);
+	private SevenSegmentDisplay hoursTenDisplay = new SevenSegmentDisplay(0, 0, width, height);
+	private SevenSegmentDisplay daysOneDisplay = new SevenSegmentDisplay(0, 0, width, height);
+	private SevenSegmentDisplay daysTenDisplay = new SevenSegmentDisplay(0, 0, width, height);
+	
+	public ClockPanel() {
+		//Set Layout
+		setLayout(new MigLayout("debug", "[grow] [grow] 20 [grow] [grow] 20 [grow] [grow] 20 [grow] [grow]", "[grow] 20 [grow]"));
+		add(daysTenDisplay, "cell 0 0 1 10, grow, wrap");
+		add(daysOneDisplay, "cell 1 0 1 10, grow, wrap");
+		add(hoursTenDisplay, "cell 2 0 1 10, grow, wrap");
+		add(hoursOneDisplay, "cell 3 0 1 10, grow, wrap");
+		add(minutesTenDisplay, "cell 4 0 1 10, grow, wrap");
+		add(minutesOneDisplay, "cell 5 0 1 10, grow, wrap");
+		add(secondsTenDisplay, "cell 6 0 1 10, grow, wrap");
+		add(secondsOneDisplay, "cell 7 0 1 10, grow, wrap");
+	}
+	
+	public void setDisplay(int secondsCount, int minutesCount, int hoursCount, int daysCount) {
+		secondsOneDisplay.changeNumber(secondsCount % 10);
+		secondsTenDisplay.changeNumber(secondsCount / 10);
+		minutesOneDisplay.changeNumber(minutesCount % 10);
+		minutesTenDisplay.changeNumber(minutesCount / 10);
+		hoursOneDisplay.changeNumber(hoursCount % 10);
+		hoursTenDisplay.changeNumber(hoursCount / 10);
+		daysOneDisplay.changeNumber(daysCount % 10);
+		daysTenDisplay.changeNumber(daysCount / 10);
+	}
+	
+	public void setPlay(boolean play) {
+		secondsOneDisplay.setPlay(play);
+		secondsTenDisplay.setPlay(play);
+		minutesOneDisplay.setPlay(play);
+		minutesTenDisplay.setPlay(play);
+		hoursOneDisplay.setPlay(play);
+		hoursTenDisplay.setPlay(play);
+		daysOneDisplay.setPlay(play);
+		daysTenDisplay.setPlay(play);
+	}
+}
+

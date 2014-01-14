@@ -1,0 +1,63 @@
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import net.miginfocom.swing.MigLayout;
+
+
+public class SettingsPanel extends JPanel{
+	
+	//Create Time Holders
+	private int daysCount;
+	private int hoursCount;
+	private int minutesCount;
+	private int secondsCount;
+	
+	//Create GUI Objects
+	JLabel daysCountLabel = new JLabel(String.valueOf(0));
+	JLabel hoursCountLabel = new JLabel(String.valueOf(0));
+	JLabel minutesCountLabel = new JLabel(String.valueOf(0));
+	JLabel secondsCountLabel = new JLabel(String.valueOf(0));
+	DaysTextField days = new DaysTextField(0);
+	HoursTextField hours = new HoursTextField(0);
+	MinutesTextField minutes = new MinutesTextField(0);
+	SecondsTextField seconds = new SecondsTextField(0);
+	JLabel daysLabel;
+	JLabel hoursLabel;
+	JLabel minutesLabel;
+	JLabel secondsLabel;
+
+	
+	public SettingsPanel() {
+		setLayout(new MigLayout("", "[20] 20 [20] 20 [20] 20 [20]", "[] 20 []"));
+		add(daysLabel, "grow, center");
+		add(hoursLabel, "grow, center");
+		add(minutesLabel, "grow, center");
+		add(secondsLabel, "grow, center, wrap");
+		add(daysCountLabel, "grow, center");
+		add(hoursCountLabel, "grow, center");
+		add(minutesCountLabel, "grow, center");
+		add(secondsCountLabel, "grow, center, wrap");
+		add(days, "grow, center");
+		add(hours, "grow, center");
+		add(minutes, "grow, center");
+		add(seconds, "grow, center, wrap");
+	}
+	
+	public int getSeconds() {
+		return this.secondsCount;
+	}
+	
+	public int getMinutes() {
+		return this.minutesCount;
+	}
+	
+	public int getHours() {
+		return this.hoursCount;
+	}
+	
+	public int getDays() {
+		return this.daysCount;
+	}
+
+}

@@ -1,0 +1,37 @@
+import javax.swing.JFrame;
+
+import net.miginfocom.swing.MigLayout;
+
+
+public class Test {
+	
+	//Constants
+	private int width = 15;
+	private int height = 30;
+		
+	private Segment segmentZero = new Segment(0, 0, height, width);
+	private Segment segmentOne = new Segment(0, 0, width, height);
+	private Segment segmentTwo = new Segment(0, 0, width, height);
+	private Segment segmentThree = new Segment(0, 0, height, width);
+	private Segment segmentFour = new Segment(0, 0, width, height);
+	private Segment segmentFive = new Segment(0, 0, width, height);
+	private Segment segmentSix = new Segment(0, 0, height, width);
+	
+	public static void main(String[] args) {
+		JFrame f = new JFrame();
+		Segment s = new Segment();
+		
+		f.setVisible(true);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setSize(600, 400);
+		f.setLayout(new MigLayout("wrap 4", "[10] [10] [10] [10] []", "[10] [10] [10] [10] [10] [10]"));
+		f.add(segmentZero, "cell 1 0 2 1, grow");
+		f.add(segmentOne, "cell 3 1 1 2, grow");
+		f.add(segmentTwo, "cell 3 4 1 2, grow");
+		f.add(segmentThree, "cell 1 6 2 1, grow");
+		f.add(segmentFour, "cell 0 4 1 2, grow");
+		f.add(segmentFive, "cell 0 1 1 2, grow");
+		f.add(segmentSix, "cell 1 3 2 1, grow");
+	}
+
+}

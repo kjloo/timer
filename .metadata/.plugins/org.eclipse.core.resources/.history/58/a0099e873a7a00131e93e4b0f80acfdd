@@ -1,0 +1,28 @@
+import javax.swing.JFrame;
+
+import net.miginfocom.swing.MigLayout;
+
+
+public class Test {
+	
+	//Constants
+	private static int width = 15;
+	private static int height = 30;
+		
+
+	
+	public static void main(String[] args) {
+		JFrame f = new JFrame();
+		
+		Segment segmentZero = new Segment(0, 0, width, height);
+		Segment segmentOne = new Segment(2, 0, height, width);
+		
+		f.setVisible(true);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setSize(600, 400);
+		f.setLayout(new MigLayout());
+		f.add(segmentZero, "grow");
+		f.add(segmentOne);
+	}
+
+}
