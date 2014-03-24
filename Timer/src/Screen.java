@@ -40,7 +40,6 @@ public class Screen{
 		Window w = vc.getFullScreenWindow();
 		if(w != null)
 			w.dispose();
-			
 		vc.setFullScreenWindow(null);
 	}
 }

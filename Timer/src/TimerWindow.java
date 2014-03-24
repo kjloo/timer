@@ -56,8 +56,8 @@ public class TimerWindow extends JFrame{
 		setVisible(true);
 		setTitle("Segment Timer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setMinimumSize(new Dimension(800, 800));
-		setSize(800, 800);
+		setMinimumSize(new Dimension(800, 825));
+		setSize(800, 825);
 		setBackground(Color.BLACK);
 		setResizable(true);
 		
@@ -118,6 +118,7 @@ public class TimerWindow extends JFrame{
 		});
 		
 		fullScreenButton = new JButton("FullScreen");
+		fullScreenButton.setEnabled(false);
 		fullScreenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				fullScreen(evt);
@@ -136,17 +137,17 @@ public class TimerWindow extends JFrame{
 		panel.add(dismissButton, "grow");
 		panel.add(resetButton, "grow");
 		panel.add(closeButton, "wrap");
-		add(panel, "wrap");
+		add(panel, "grow");
 		add(fullScreenButton, "right");
 	}
 	
-	public void setDisplay() {
+	public void setDisplay(ClockPanel clock) {
 		clock.setDisplay(settings.getSeconds(), settings.getMinutes(), settings.getHours(), settings.getDays());
 		clock.setClock(settings.getSeconds(), settings.getMinutes(), settings.getHours(), settings.getDays());
 	}
 	
-	public void updateDisplay() {
-		clock.updateDisplay(settings.getSeconds(), settings.getMinutes(), settings.getHours(), settings.getDays());
+	public void updateDisplay(ClockPanel clock) {
+		clock.updateDisplay(settings.getSeconds(), settings.getMinutes(), settings.getHours(), settings.getDays()); 
 		clock.setClock(settings.getSeconds(), settings.getMinutes(), settings.getHours(), settings.getDays());
 	}
 	
@@ -159,7 +160,7 @@ public class TimerWindow extends JFrame{
 			}
 			SwingUtilities.invokeLater(new Runnable() {
 			    public void run() {
-			        updateDisplay();
+			        updateDisplay(clock);
 			    }
 			});
 			try {
@@ -188,6 +189,7 @@ public class TimerWindow extends JFrame{
 		resetButton.setEnabled(!enable);
 		settings.changeEnabled(enable);
 		closeButton.setEnabled(enable);
+		fullScreenButton.setEnabled(!enable);
 	}
 	
 	private void disableButtons() {
@@ -197,13 +199,14 @@ public class TimerWindow extends JFrame{
 		resetButton.setEnabled(false);
 		dismissButton.setEnabled(false);
 		settings.changeEnabled(true);
+		fullScreenButton.setEnabled(false);
 	}
 	
 	public void checkFields(boolean valid) {
 		setButton.setEnabled(valid);	
 	}
 	
-	public void setPlay(boolean play) {
+	public void setPlay(ClockPanel clock, boolean play) {
 		clock.setPlay(play);
 	}
 	
@@ -211,12 +214,12 @@ public class TimerWindow extends JFrame{
 	public void setTime(ActionEvent evt) {
 		settings.setTime();
 		startButton.setEnabled(settings.getDays() + settings.getHours() + settings.getMinutes() + settings.getSeconds() != 0);
-		setDisplay();
+		setDisplay(this.clock);
 	}
 	
 	private void startClock(ActionEvent evt) {
 		changeEnabled(false);
-		setPlay(true);
+		setPlay(this.clock, true);
 		//Start Countdown
 		new Thread(new Runnable() {
 			public void run() {
@@ -227,14 +230,14 @@ public class TimerWindow extends JFrame{
 	
 	private void stopClock(ActionEvent evt) {
 		changeEnabled(true);
-		setPlay(false);
+		setPlay(this.clock, false);
 	}
 	
 	private void resetClock(ActionEvent evt) {
 		changeEnabled(true);
-		setPlay(false);
+		setPlay(this.clock, false);
 		settings.setTime();
-		setDisplay();
+		setDisplay(this.clock);
 	}
 	
 	private void fullScreen(ActionEvent evt) {
@@ -244,8 +247,14 @@ public class TimerWindow extends JFrame{
 				Screen s = new Screen();			
 				try {
 					s.setFullScreen(dm, frame);
+					setPlay(frame.getClock(), true);
 					try {
-						Thread.sleep(5000);
+						while(frame.getFullScreen()) {
+							updateDisplay(frame.getClock());
+						
+							Thread.sleep(SECOND);
+						}
+						
 					}catch(Exception ex) {
 						ex.printStackTrace();
 					}
