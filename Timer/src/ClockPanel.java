@@ -57,36 +57,36 @@ public class ClockPanel extends JPanel{
 		this.daysCount = daysCount;
 	}
 	
-	public void setDisplay(int secondsCount, int minutesCount, int hoursCount, int daysCount) {
-		secondsOneDisplay.changeNumber(secondsCount % 10);
-		secondsTenDisplay.changeNumber(secondsCount / 10);
-		minutesOneDisplay.changeNumber(minutesCount % 10);
-		minutesTenDisplay.changeNumber(minutesCount / 10);
-		hoursOneDisplay.changeNumber(hoursCount % 10);
-		hoursTenDisplay.changeNumber(hoursCount / 10);
-		daysOneDisplay.changeNumber(daysCount % 10);
-		daysTenDisplay.changeNumber((daysCount / 10) % 10);
-		daysHundredDisplay.changeNumber(daysCount / 100);
+	public void setDisplay() {
+		secondsOneDisplay.changeNumber(this.secondsCount % 10, 10);
+		secondsTenDisplay.changeNumber(this.secondsCount / 10, 6);
+		minutesOneDisplay.changeNumber(this.minutesCount % 10, 10);
+		minutesTenDisplay.changeNumber(this.minutesCount / 10, 6);
+		hoursOneDisplay.changeNumber(this.hoursCount % 10, 10);
+		hoursTenDisplay.changeNumber(this.hoursCount / 10, 3);
+		daysOneDisplay.changeNumber(this.daysCount % 10, 10);
+		daysTenDisplay.changeNumber((this.daysCount / 10) % 10, 10);
+		daysHundredDisplay.changeNumber(this.daysCount / 100, 10);
 	}
 	
 	public void updateDisplay(int secondsCount, int minutesCount, int hoursCount, int daysCount) {
-		secondsOneDisplay.changeNumber(secondsCount % 10);
+		secondsOneDisplay.changeNumber(secondsCount % 10, 10);
 		if(this.secondsCount % 10 != MAX_SECONDS % 10 && secondsCount % 10 == MAX_SECONDS % 10)
-			secondsTenDisplay.changeNumber(secondsCount / 10);
+			secondsTenDisplay.changeNumber(secondsCount / 10, 6);
 		if(this.secondsCount != MAX_SECONDS && secondsCount == MAX_SECONDS)
-			minutesOneDisplay.changeNumber(minutesCount % 10);
+			minutesOneDisplay.changeNumber(minutesCount % 10, 10);
 		if(this.minutesCount % 10 != MAX_MINUTES % 10 && minutesCount % 10 == MAX_MINUTES % 10)
-			minutesTenDisplay.changeNumber(minutesCount / 10);
+			minutesTenDisplay.changeNumber(minutesCount / 10, 6);
 		if(this.minutesCount != MAX_MINUTES && minutesCount == MAX_MINUTES)
-			hoursOneDisplay.changeNumber(hoursCount % 10);
+			hoursOneDisplay.changeNumber(hoursCount % 10, 10);
 		if(this.hoursCount % 10 != MAX_HOURS % 10 && hoursCount % 10 == MAX_HOURS % 10)
-			hoursTenDisplay.changeNumber(hoursCount / 10);
+			hoursTenDisplay.changeNumber(hoursCount / 10, 3);
 		if(this.hoursCount != MAX_HOURS && hoursCount == MAX_HOURS)
-			daysOneDisplay.changeNumber(daysCount % 10);
+			daysOneDisplay.changeNumber(daysCount % 10, 10);
 		if((this.daysCount % 10) % 10 != (MAX_DAYS / 10) % 10 && (daysCount % 10) % 10 == (MAX_DAYS / 10) % 10)
-			daysTenDisplay.changeNumber((daysCount / 10) % 10);
+			daysTenDisplay.changeNumber((daysCount / 10) % 10, 10);
 		if(this.daysCount % 100 != MAX_DAYS % 100 && daysCount % 100 == MAX_DAYS % 100)
-			daysHundredDisplay.changeNumber(daysCount / 100);
+			daysHundredDisplay.changeNumber(daysCount / 100, 10);
 	}
 	
 	public void setPlay(boolean play) {

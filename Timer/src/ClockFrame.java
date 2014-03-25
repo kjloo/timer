@@ -18,16 +18,11 @@ public class ClockFrame extends JFrame{
 	private ClockPanel clock;	
 	private boolean fullScreen = false;
 	
-	public ClockFrame() {
-		this.clock = new ClockPanel();
-		initComponents();
-	}
-	
 	public ClockFrame(ClockPanel clock) {
 		this.fullScreen = true;
 		this.clock = new ClockPanel();
 		this.clock.setClock(clock.getSecondsCount(), clock.getMinutesCount(), clock.getHoursCount(), clock.getDaysCount());
-		this.clock.setDisplay(clock.getSecondsCount(), clock.getMinutesCount(), clock.getHoursCount(), clock.getDaysCount());
+		this.clock.setDisplay();
 		initComponents();
 	}
 	
@@ -37,11 +32,11 @@ public class ClockFrame extends JFrame{
 		setBackground(Color.BLACK);
 		
 		setLayout(new MigLayout("", "[grow]", "[grow]"));
-		add(clock, "grow");
+		add(this.clock, "grow, center, span");
 		
 		addKeyListener(new KeyListener() {
 			public void keyReleased(KeyEvent evt) {
-				if(evt.getKeyChar() == 'q')
+				if(evt.getKeyChar() == KeyEvent.VK_ESCAPE)
 					setFullScreen(false);
 			}
 

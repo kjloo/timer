@@ -91,68 +91,45 @@ public class SevenSegmentDisplay extends JPanel implements ActionListener{
 		colorChange(Color.RED);
 	}
 	
-	public void changeNumber(int num) {
-		if(num == 0) {
-			changeDisplay(one);
-			fallInSegments(zero & ~one);
-			fallOutSegments(one & ~zero);
-			newSegments(nine & ~zero);
-			oldSegments(zero & ~nine);
-		}else if(num == 1) {
-			changeDisplay(two);
-			fallInSegments(one & ~two);
-			fallOutSegments(two & ~one);
-			newSegments(zero & ~one);
-			oldSegments(one & ~zero);
-		}else if(num == 2) {
-			changeDisplay(three);
-			fallInSegments(two & ~three);
-			fallOutSegments(three & ~two);
-			newSegments(one & ~two);
-			oldSegments(two & ~ one);
-		}else if(num == 3) {
-			changeDisplay(four);
-			fallInSegments(three & ~four);
-			fallOutSegments(four & ~three);
-			newSegments(two & ~three);
-			oldSegments(three & ~two);
-		}else if(num == 4) {
-			changeDisplay(five);
-			fallInSegments(four & ~five);
-			fallOutSegments(five & ~four);
-			newSegments(three & ~four);
-			oldSegments(four & ~three);
-		}else if(num == 5) {
-			changeDisplay(six);
-			fallInSegments(five & ~six);
-			fallOutSegments(six & ~five);
-			newSegments(four & ~five);
-			oldSegments(five & ~four);
-		}else if(num == 6) {
-			changeDisplay(seven);
-			fallInSegments(six & ~seven);
-			fallOutSegments(seven & ~six);
-			newSegments(five & ~six);
-			oldSegments(six & ~five);
-		}else if(num == 7) {
-			changeDisplay(eight);
-			fallInSegments(seven & ~eight);
-			fallOutSegments(eight & ~seven);
-			newSegments(six & ~seven);
-			oldSegments(seven & ~six);
-		}else if(num == 8) {
-			changeDisplay(nine);
-			fallInSegments(eight & ~nine);	
-			fallOutSegments(nine & ~eight);	
-			newSegments(seven & ~eight);
-			oldSegments(eight & ~seven);
-		}else {
-			changeDisplay(zero);
-			fallInSegments(nine & ~zero);
-			fallOutSegments(zero & ~nine);
-			newSegments(eight & ~nine);
-			oldSegments(nine & ~eight);
-		}
+	
+	
+	public void changeNumber(int num, int mod) {
+		//Convert to Seven Segment Display Representation
+		int prevNum = setNum(num + 1, mod);
+		int nextNum = setNum(num - 1, mod);
+		num = setNum(num, mod);
+
+		//Change Display
+		changeDisplay(prevNum);
+		fallInSegments(num & ~prevNum);
+		fallOutSegments(prevNum & ~num);
+		newSegments(nextNum & ~num);
+		oldSegments(num & ~nextNum);
+	}
+	
+	private int setNum(int num, int mod) {
+		if(num % mod == 0)
+			return zero;
+		else if(num == 1)
+			return one;
+		else if(num == 2)
+			return two;
+		else if(num == 3)
+			return three;
+		else if(num == 4)
+			return four;
+		else if(num == 5)
+			return five;
+		else if(num == 6)
+			return six;
+		else if(num == 7)
+			return seven;
+		else if(num == 8)
+			return eight;
+		else if(num == 9)
+			return nine;
+		else
+			return setNum(mod - 1, 10);
 	}
 	
 	private void changeDisplay(int num) {
