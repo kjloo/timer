@@ -1,0 +1,1 @@
+jar cvfm JAR_FILE_NAME.jar MANIFEST.MF TimerMain.class

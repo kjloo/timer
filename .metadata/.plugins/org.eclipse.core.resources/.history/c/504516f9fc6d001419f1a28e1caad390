@@ -1,0 +1,96 @@
+import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.KeyStroke;
+
+import net.miginfocom.swing.MigLayout;
+
+
+public class ClockFrame extends JFrame{
+	
+	private ClockPanel clock;	
+	private JButton exitButton;
+	private boolean fullScreen = false;
+	
+	private AbstractAction action;
+	private JComponent component;
+
+	action = ;
+	
+	public ClockFrame(ClockPanel clock) {
+		this.fullScreen = true;
+		this.clock = new ClockPanel();
+		this.clock.setClock(clock.getSecondsCount(), clock.getMinutesCount(), clock.getHoursCount(), clock.getDaysCount());
+		this.clock.setDisplay();
+		initComponents();
+	}
+	
+	private void initComponents() {
+		//Settings
+		setSize(Toolkit.getDefaultToolkit().getScreenSize());
+		getContentPane().setBackground(Color.BLACK);
+
+		component.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "dispose");
+		component.getActionMap().put("dispose", new AbstractAction()
+		{
+		   public void actionPerformed(ActionEvent e)
+		   {
+		      setFullScreen(false);
+		   }
+		});
+		
+		addKeyListener(new KeyListener() {
+			public void keyReleased(KeyEvent evt) {
+				if(evt.getKeyChar() == KeyEvent.VK_ESCAPE)
+					setFullScreen(false);
+			}
+
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		exitButton = new JButton("Exit");
+		exitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				setFullScreen(false);
+			}
+		});
+		
+		setLayout(new MigLayout("", "[grow]", "[grow] [10]"));
+		add(this.clock, "grow, center, span");
+		add(exitButton, "right, bottom, span");
+		this.requestFocusInWindow();
+	
+	}
+
+	private void setFullScreen(boolean set) {
+		this.fullScreen = set;
+	}
+	
+	public ClockPanel getClock() {
+		return this.clock;
+	}
+	
+	public boolean getFullScreen(){
+		return this.fullScreen;
+	}
+}
