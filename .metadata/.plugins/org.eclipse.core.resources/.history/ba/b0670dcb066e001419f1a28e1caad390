@@ -1,0 +1,39 @@
+package main;
+import java.io.File;
+import java.io.InputStream;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
+import com.apple.mrj.macos.carbon.Timer;
+
+public class Alarm {
+
+	String DIR = "Timer/src/sounds/";
+	private Clip clip;
+
+	public Alarm(String filename) {
+		try {
+			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+			InputStream input = classLoader.getResourceAsStream(
+				    DIR + filename);
+			AudioInputStream audioInputStream = AudioSystem
+					.getAudioInputStream(Timer.class.getResourceAsStream(DIR + filename));
+			clip = AudioSystem.getClip();
+			clip.open(audioInputStream);
+		} catch (Exception ex) {
+			System.out.println("Error with opening sound file.");
+			ex.printStackTrace();
+		}
+	}
+
+	public void play() {
+		clip.start();
+	}
+
+	public void stop() {
+		clip.stop();
+	}
+
+}

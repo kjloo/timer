@@ -13,14 +13,16 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="daysTenDisplay" key="selection"/>
+		<item value="closeButton" key="selection"/>
 		<list key="findhistory">
+			<item value="closeButton"/>
+			<item value="changeNum"/>
+			<item value="change"/>
+			<item value="this.num"/>
+			<item value="changeEnabled"/>
+			<item value="disableButtons"/>
+			<item value="clockframe"/>
 			<item value="daysTenDisplay"/>
-			<item value="createSegments"/>
-			<item value="numberDisplay"/>
-			<item value="start"/>
-			<item value="anti"/>
-			<item value="integer"/>
 		</list>
 		<list key="replacehistory">
 			<item value="changeDisplay"/>
