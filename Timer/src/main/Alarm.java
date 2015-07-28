@@ -1,12 +1,7 @@
 package main;
-import java.io.File;
-import java.io.InputStream;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-
-import com.apple.mrj.macos.carbon.Timer;
 
 public class Alarm {
 
