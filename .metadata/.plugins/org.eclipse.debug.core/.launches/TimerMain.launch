@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/Timer"/>
+<listEntry value="/Timer/src/main/TimerMain.java"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
-<listEntry value="4"/>
+<listEntry value="1"/>
 </listAttribute>
-<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="TimerMain"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="main.TimerMain"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Timer"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dsun.java2d.d3d=false"/>
 </launchConfiguration>

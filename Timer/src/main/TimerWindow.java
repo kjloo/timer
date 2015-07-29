@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -17,12 +18,16 @@ public class TimerWindow extends JFrame {
 	// Create Constants
 	private int SECOND = 1000;
 
+	// Create Timer
+	private Timer timer;
+	
 	// Create Alarm
 	private Alarm alarm;
 	private String filename = "Siren.wav";
 
 	// Create Clock
 	private ClockPanel clock = new ClockPanel();
+	private ClockFrame frame;
 
 	// Create Display variables
 	private DisplayMode dm;
@@ -62,8 +67,18 @@ public class TimerWindow extends JFrame {
 		getContentPane().setBackground(Color.BLACK);
 		setResizable(true);
 
+		// Setup Timer
+		ActionListener taskPerformer = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent evt) {
+				countDown();		
+			}
+	  	};
+		this.timer = new Timer(SECOND, taskPerformer);
+		this.timer.setInitialDelay(0);
+		
 		// Setup Alarm
-		alarm = new Alarm(filename);
+		this.alarm = new Alarm(filename);
 
 		// Setup GUI Objects;
 		// Create Panel
@@ -157,25 +172,22 @@ public class TimerWindow extends JFrame {
 	}
 
 	private void countDown() {
-		while (stopButton.isEnabled()) {
-			settings.countDown();
-			if (settings.getDays() + settings.getHours()
-					+ settings.getMinutes() + settings.getSeconds() == 0) {
-				stopButton.setEnabled(false);
+		settings.countDown();
+		if (settings.getDays() + settings.getHours()
+				+ settings.getMinutes() + settings.getSeconds() == 0) {
+			resetButtons();
 
-				playSound();
-			}
-			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
-					updateDisplay(clock);
-				}
-			});
-			try {
-				Thread.sleep(SECOND);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			this.timer.stop();
+			playSound();
 		}
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				updateDisplay(clock);
+				if (frame != null && frame.getClock() != null) {
+					updateDisplay(frame.getClock());
+				}
+			}
+		});
 	}
 
 	private void playSound() {
@@ -184,8 +196,7 @@ public class TimerWindow extends JFrame {
 	}
 
 	private void stopAlarm(ActionEvent evt) {
-		dismissButton.setEnabled(false);
-		disableButtons();
+		resetButtons();
 		alarm.stop();
 	}
 
@@ -199,8 +210,8 @@ public class TimerWindow extends JFrame {
 		fullScreenButton.setEnabled(!enable);
 	}
 
-	private void disableButtons() {
-		setButton.setEnabled(false);
+	private void resetButtons() {
+		setButton.setEnabled(true);
 		startButton.setEnabled(false);
 		stopButton.setEnabled(false);
 		resetButton.setEnabled(false);
@@ -219,6 +230,7 @@ public class TimerWindow extends JFrame {
 
 	// Action Function
 	public void setTime(ActionEvent evt) {
+		stopAlarm(evt);
 		settings.setTime();
 		startButton.setEnabled(settings.getDays() + settings.getHours()
 				+ settings.getMinutes() + settings.getSeconds() != 0);
@@ -229,21 +241,17 @@ public class TimerWindow extends JFrame {
 		changeEnabled(false);
 		setPlay(this.clock, true);
 		// Start Countdown
-		new Thread(new Runnable() {
-			public void run() {
-				countDown();
-			}
-		}).start();
+		this.timer.start();
 	}
 
 	private void stopClock(ActionEvent evt) {
+		this.timer.stop();
 		changeEnabled(true);
 		setPlay(this.clock, false);
 	}
 
 	private void resetClock(ActionEvent evt) {
-		changeEnabled(true);
-		setPlay(this.clock, false);
+		stopClock(evt);
 		settings.setTime();
 		setDisplay(this.clock);
 	}
@@ -251,22 +259,34 @@ public class TimerWindow extends JFrame {
 	private void fullScreen(ActionEvent evt) {
 		new Thread(new Runnable() {
 			public void run() {
-				ClockFrame frame = new ClockFrame(clock);
+				frame = new ClockFrame(clock);
 				Screen s = new Screen();
 				try {
 					s.setFullScreen(dm, frame);
+					setPlay(clock, false);
 					setPlay(frame.getClock(), true);
+					fullScreenButton.setEnabled(false);
+					
 					try {
 						while (frame.getFullScreen()) {
-							updateDisplay(frame.getClock());
-							Thread.sleep(SECOND);
+							// wait
+							Thread.sleep(SECOND/2);
 						}
 
 					} catch (Exception ex) {
 						ex.printStackTrace();
 					}
 				} finally {
+					// cleanup unused clock frame
+					fullScreenButton.setEnabled(true);
 					s.restoreScreen();
+					setPlay(clock, true);
+					setPlay(frame.getClock(), false);
+					
+					
+					frame.dispose();
+					frame = null;
+					s = null;
 				}
 			}
 		}).start();

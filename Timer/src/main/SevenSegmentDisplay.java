@@ -75,6 +75,7 @@ public class SevenSegmentDisplay extends JPanel implements ActionListener {
 	private int newPiece = num;
 
 	public SevenSegmentDisplay() {
+		this.t.setInitialDelay(0);
 		createSegments();
 		colorChange(Color.RED);
 	}
