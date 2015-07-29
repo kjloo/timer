@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 INDEX VERSION 1.126+D:\Users\Kaleb\Code\Timer\.metadata\.plugins\org.eclipse.jdt.core
 1837067418.index
 1813868702.index
@@ -15,3 +16,67 @@ INDEX VERSION 1.126+D:\Users\Kaleb\Code\Timer\.metadata\.plugins\org.eclipse.jdt
 2741475392.index
 3747707028.index
 1622348384.index
+=======
+INDEX VERSION 1.126+/Users/kaleb-johnloo/Documents/Code/timer/.metadata/.plugins/org.eclipse.jdt.core
+<<<<<<< HEAD
+1384487945.index
+3218136984.index
+2545238116.index
+3712507179.index
+3302703152.index
+156905802.index
+84777399.index
+3954040986.index
+1819685514.index
+3000285004.index
+765977872.index
+705368131.index
+3004609673.index
+450555687.index
+1833648217.index
+770573466.index
+4238209716.index
+3321539481.index
+3266567714.index
+2326659272.index
+272178059.index
+1271342938.index
+4249315662.index
+=======
+3004609673.index
+3712507179.index
+1744670643.index
+4238209716.index
+369741659.index
+3788427059.index
+272178059.index
+4253713330.index
+4010447654.index
+1384487945.index
+770573466.index
+2775959377.index
+2326659272.index
+3909959958.index
+765977872.index
+3302703152.index
+84777399.index
+2460210007.index
+1271342938.index
+156905802.index
+2139576723.index
+2978579992.index
+4249315662.index
+1819685514.index
+3266567714.index
+1833648217.index
+1308420387.index
+450555687.index
+2209870153.index
+3954040986.index
+4082587601.index
+3321539481.index
+3000285004.index
+2545238116.index
+705368131.index
+>>>>>>> trunk
+>>>>>>> 00aef24fdd622619f4616f67756d7a627bd73246

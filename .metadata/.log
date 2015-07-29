@@ -213,6 +213,12 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.
 
 !ENTRY org.eclipse.core.net 1 0 2014-01-13 12:18:43.394
 !MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+!SESSION 2014-01-13 19:53:14.881 -----------------------------------------------
+=======
+>>>>>>> 00aef24fdd622619f4616f67756d7a627bd73246
 !SESSION 2014-01-23 19:18:43.080 -----------------------------------------------
 eclipse.buildId=M20130204-1200
 java.version=1.6.0_65
@@ -234,6 +240,10 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.
 !ENTRY org.eclipse.core.net 1 0 2014-03-24 14:56:38.265
 !MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
 !SESSION 2014-05-09 09:56:12.660 -----------------------------------------------
+<<<<<<< HEAD
+=======
+>>>>>>> trunk
+>>>>>>> 00aef24fdd622619f4616f67756d7a627bd73246
 eclipse.buildId=M20130204-1200
 java.version=1.6.0_65
 java.vendor=Apple Inc.
@@ -241,6 +251,13 @@ BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
 Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/kaleb-johnloo/.eclipse_keyring -showlocation
 Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/kaleb-johnloo/.eclipse_keyring -showlocation
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+!ENTRY org.eclipse.core.net 1 0 2014-01-13 19:53:32.233
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+=======
+>>>>>>> 00aef24fdd622619f4616f67756d7a627bd73246
 !ENTRY org.eclipse.core.net 1 0 2014-05-09 09:56:33.365
 !MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
 !SESSION 2014-05-17 20:08:29.632 -----------------------------------------------
@@ -2405,6 +2422,7 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product com.android.
 
 !ENTRY org.eclipse.ui 2 2 2014-11-16 19:31:23.154
 !MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+<<<<<<< HEAD
 
 !ENTRY org.eclipse.ui 2 2 2015-07-27 19:12:31.739
 !MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
@@ -3484,3 +3502,6 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.ui 2 2 2015-07-28 22:50:27.435
 !MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+=======
+>>>>>>> trunk
+>>>>>>> 00aef24fdd622619f4616f67756d7a627bd73246

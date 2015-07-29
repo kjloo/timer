@@ -27,6 +27,11 @@
 		<item value="false" key="updateTextualMatches"/>
 		<item value="false" key="updateSimilarElements"/>
 	</section>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 00aef24fdd622619f4616f67756d7a627bd73246
 	<section name="quick_assist_proposal_size">
 	</section>
 	<section name="NewClassWizardPage">
@@ -55,4 +60,8 @@
 		<item value="306" key="org.eclipse.jdt.internal.ui.typehierarchy.HierarchyInformationControlDIALOG_HEIGHT"/>
 		<item value="true" key="org.eclipse.jdt.internal.ui.typehierarchy.HierarchyInformationControlDIALOG_USE_PERSISTED_SIZE"/>
 	</section>
+<<<<<<< HEAD
+=======
+>>>>>>> trunk
+>>>>>>> 00aef24fdd622619f4616f67756d7a627bd73246
 </section>
