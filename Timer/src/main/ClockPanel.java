@@ -30,16 +30,19 @@ public class ClockPanel extends JPanel {
 			0, width, height);
 	private SevenSegmentDisplay minutesTenDisplay = new SevenSegmentDisplay(0,
 			0, width, height);
+	private ColonPanel minutesColon = new ColonPanel();
 	private SevenSegmentDisplay hoursOneDisplay = new SevenSegmentDisplay(0, 0,
 			width, height);
 	private SevenSegmentDisplay hoursTenDisplay = new SevenSegmentDisplay(0, 0,
 			width, height);
+	private ColonPanel hoursColon = new ColonPanel();
 	private SevenSegmentDisplay daysOneDisplay = new SevenSegmentDisplay(0, 0,
 			width, height);
 	private SevenSegmentDisplay daysTenDisplay = new SevenSegmentDisplay(0, 0,
 			width, height);
 	private SevenSegmentDisplay daysHundredDisplay = new SevenSegmentDisplay(0,
 			0, width, height);
+	private ColonPanel daysColon = new ColonPanel();
 
 	public ClockPanel() {
 		initComponents();
@@ -52,17 +55,20 @@ public class ClockPanel extends JPanel {
 		// Set Layout
 		setLayout(new MigLayout(
 				"",
-				"[grow] [grow] [grow] 20 [grow] [grow] 20 [grow] [grow] 20 [grow] [grow]",
-				"[grow] 20 [grow]"));
+				"[grow] [grow] [grow] [grow] [grow] [grow] [grow] [grow] [grow] [grow] [grow] [grow]",
+				"[grow] [grow] [grow]"));
 		add(daysHundredDisplay, "cell 0 0 1 10, grow, wrap");
 		add(daysTenDisplay, "cell 1 0 1 10, grow, wrap");
 		add(daysOneDisplay, "cell 2 0 1 10, grow, wrap");
-		add(hoursTenDisplay, "cell 3 0 1 10, grow, wrap");
-		add(hoursOneDisplay, "cell 4 0 1 10, grow, wrap");
-		add(minutesTenDisplay, "cell 5 0 1 10, grow, wrap");
-		add(minutesOneDisplay, "cell 6 0 1 10, grow, wrap");
-		add(secondsTenDisplay, "cell 7 0 1 10, grow, wrap");
-		add(secondsOneDisplay, "cell 8 0 1 10, grow, wrap");
+		add(daysColon, "cell 3 0 1 10, grow, wrap");
+		add(hoursTenDisplay, "cell 4 0 1 10, grow, wrap");
+		add(hoursOneDisplay, "cell 5 0 1 10, grow, wrap");
+		add(hoursColon, "cell 6 0 1 10, grow, wrap");
+		add(minutesTenDisplay, "cell 7 0 1 10, grow, wrap");
+		add(minutesOneDisplay, "cell 8 0 1 10, grow, wrap");
+		add(minutesColon, "cell 9 0 1 10, grow, wrap");
+		add(secondsTenDisplay, "cell 10 0 1 10, grow, wrap");
+		add(secondsOneDisplay, "cell 11 0 1 10, grow, wrap");
 	}
 
 	public void setClock(int secondsCount, int minutesCount, int hoursCount,

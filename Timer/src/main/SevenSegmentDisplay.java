@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class SevenSegmentDisplay extends JPanel implements ActionListener {
+public class SevenSegmentDisplay extends TimerPanel implements ActionListener {
 
 	// Animation variables
 	private Timer t = new Timer(125, this);
@@ -20,9 +20,6 @@ public class SevenSegmentDisplay extends JPanel implements ActionListener {
 	private int[] f = new int[SIZE];
 	private int[] n = new int[SIZE];
 	private int velocity = 30;
-	private int width = 21;
-	private int height = 7;
-	private int spacing = 4 * width;
 
 	// Create Segments
 	private Rectangle segmentZero;
@@ -74,23 +71,21 @@ public class SevenSegmentDisplay extends JPanel implements ActionListener {
 	private int fallOutPiece = num;
 	private int newPiece = num;
 
-	public SevenSegmentDisplay() {
-		this.t.setInitialDelay(0);
-		createSegments();
-		colorChange(Color.RED);
-	}
+//	public SevenSegmentDisplay() {
+//		this.t.setInitialDelay(0);
+//	}
 
 	public SevenSegmentDisplay(int x, int y, int width, int height) {
+		this.t.setInitialDelay(0);
 		this.x = x;
 		for (int i = 0; i < this.y.length; i++)
 			this.y[i] = y;
 		this.width = width;
 		this.height = height;
 		this.spacing = 6 * width;
-		createSegments();
-		colorChange(Color.RED);
+		createFeatures();
 	}
-
+	
 	public void changeNumber(int num, int mod) {
 		// Convert to Seven Segment Display Representation
 		int prevNum = setNum(num + 1, mod);
@@ -151,10 +146,7 @@ public class SevenSegmentDisplay extends JPanel implements ActionListener {
 	private void oldSegments(int piece) {
 	}
 
-	private void createSegments() {
-		// Settings
-		setOpaque(false);
-
+	protected void createFeatures() {
 		this.segmentZero = new Rectangle(x + height, y[0] + 2 * spacing, width,
 				height);
 		this.segmentOne = new Rectangle(x + width + height, y[1] + height + 2
@@ -200,7 +192,7 @@ public class SevenSegmentDisplay extends JPanel implements ActionListener {
 
 	}
 
-	private void drawSegments(Graphics2D g2) {
+	protected void drawFeatures(Graphics2D g2) {
 		if ((this.num & (0x01 << 0)) != 0)
 			g2.fillRect(segmentZero.x, segmentZero.y, segmentZero.width,
 					segmentZero.height);
@@ -268,20 +260,6 @@ public class SevenSegmentDisplay extends JPanel implements ActionListener {
 					newSegmentSix.height);
 	}
 
-	public void paint(Graphics g) {
-		super.paintComponent(g);
-		Graphics2D g2 = (Graphics2D) g;
-		g.setColor(new Color(R, G, B));
-		createSegments();
-		drawSegments(g2);
-	}
-
-	public void colorChange(Color color) {
-		this.R = color.getRed();
-		this.G = color.getGreen();
-		this.B = color.getBlue();
-	}
-
 	public void actionPerformed(ActionEvent e) {
 		if (play) {
 			for (int i = 0; i < y.length; i++) {
@@ -315,5 +293,4 @@ public class SevenSegmentDisplay extends JPanel implements ActionListener {
 		else
 			t.stop();
 	}
-
 }
