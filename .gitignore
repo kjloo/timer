@@ -1,0 +1,14 @@
+*target*
+*.jar
+*.class
+
+# eclipse specific
+*.pydevproject
+.project
+.metadata
+*.tmp
+*.bak
+.classpath
+.settings/
+.loadpath
+.launch
